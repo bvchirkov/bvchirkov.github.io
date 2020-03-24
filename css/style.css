@@ -1,5 +1,8 @@
 body {
   max-width: 80ch;
+  font-family: 'Roboto';
+  font-weight: 300;
+  font-style: normal;
 }
 
 .new {
