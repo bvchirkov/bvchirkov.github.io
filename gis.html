@@ -5,42 +5,44 @@
 <head>
   <meta charset="utf-8" />
   <title>ГИС-технологии</title>
+  <link href="css/style.css" rel="stylesheet">
   <style>
-    body {
-      max-width: 80ch;
-    }
-
-    article {
-      border-bottom: 1px solid black;
-    }
     .sfooter {
       display: flex;
     }
+
     .sfooter-item {
       width: 50%;
     }
+
   </style>
 </head>
 
 <body>
-  <article>
-    <div style="display: flex;">
-      <img src="img/gis-icon.jpg" width="64px">
-      <h1>ГИС-технологии</h1>
-    </div>
+  <header>
+    <img src="img/gis-icon.jpg" width="64px" height="64px">
+    <h1>ГИС-технологии</h1>
+  </header>
 
+  <article>
     <p>Написанные програмы высылать на почту преподавателю. В письме указать ФИО отправителя, группу и номер практической работы.</p>
   </article>
 
-  <article>
-    <h3>Практическая работа № 3. Пересечение обектов слоя</h3>
+  <details open>
+    <summary>
+      <h3>Практическая работа № 3. Пересечение обектов слоя</h3>
+    </summary>
+
     <p>Используя API QGIS, написать программу, реализующую поиск и выделение всех объектов активного слоя, которые пересекаются между собой.</p>
     <p>Провести тестирование программы при различных сценариях.</p>
     <p>Написать комментарии к коду. Описать работу программы.</p>
-  </article>
+  </details>
 
-  <article>
-    <h3>Практическая работа № 4. Невалидные объекты</h3>
+  <details>
+    <summary>
+      <h3>Практическая работа № 4. Невалидные объекты</h3>
+    </summary>
+
     <p>Используя API QGIS, написать программу, реализующую поиск и выделение всех объектов слоя doors, которые: </p>
     <ol>
       <li>пересекаются между собой в пределах слоя (цвет - желтый);</li>
@@ -49,22 +51,29 @@
     </ol>
     <p>Провести тестирование программы при различных сценариях.</p>
     <p>Написать комментарии к коду. Описать работу программы.</p>
-  </article>
+  </details>
 
-  <article>
-    <h3>Практическая работа № 5. Обмен данными с внешними программами</h3>
+  <details>
+    <summary>
+      <h3>Практическая работа № 5. Обмен данными с внешними программами</h3>
+    </summary>
+
     <p>Используя API QGIS, написать программу, реализующую вызов внешней программы с передачей ей некоторых параметров и получение, с последующей обработкой, ответа</p>
-  </article>
+  </details>
 
   <section class="sfooter">
     <div class="sfooter-item">
       <h3>Где почитать</h3>
-      <a href="https://www.python.org">python</a> <br>
-      <a href="https://docs.qgis.org/2.18/en/docs/pyqgis_developer_cookbook/vector.html">Using Vector Layers</a> <br>
+      <ul class="sfooter-links">
+        <li><a href="https://www.python.org">python</a> </li>
+        <li><a href="https://docs.qgis.org/2.18/en/docs/pyqgis_developer_cookbook/vector.html">Using Vector Layers</a></li>
+      </ul>
     </div>
     <div class="sfooter-item">
       <h3>Где скачать</h3>
-      <a href="https://qgis.org/downloads/">QGIS 2.18</a> <br>
+      <ul class="sfooter-links">
+        <li><a href="https://qgis.org/downloads/">QGIS 2.18</a></li>
+      </ul>
     </div>
   </section>
 </body>

@@ -1,0 +1,41 @@
+body {
+  max-width: 80ch;
+}
+
+.new {
+  border-bottom: 1px dashed black;
+}
+
+header {
+  display: flex;
+}
+
+h3 {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+details h3 {
+  display: inline;
+}
+
+details {
+  margin-bottom: 10px;
+}
+
+details[open] {
+  border-bottom: 1px solid black;
+}
+
+details summary {
+  display: inline;
+  border-bottom: 1px dotted;
+  outline-style: none;
+  cursor: pointer;
+}
+
+.sfooter-links {
+  list-style: none;
+  margin-top: 0;
+  padding-left: 0px;
+}
