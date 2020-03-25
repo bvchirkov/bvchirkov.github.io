@@ -11,9 +11,12 @@ body {
 
 header {
   display: flex;
+  align-items: center;
 }
+
 header h1 {
   border-bottom: 1px dotted;
+  margin-left: 20px;
 }
 
 h3 {
