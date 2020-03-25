@@ -12,6 +12,9 @@ body {
 header {
   display: flex;
 }
+header h1 {
+  border-bottom: 1px dotted;
+}
 
 h3 {
   margin-bottom: 5px;
@@ -37,8 +40,24 @@ details summary {
   cursor: pointer;
 }
 
+.sfooter {
+  display: flex;
+}
+
+.sfooter-item {
+  width: 50%;
+}
+
 .sfooter-links {
   list-style: none;
   margin-top: 0;
   padding-left: 0px;
+}
+
+.index-link {
+  list-style: none;
+}
+
+.index-link li {
+  margin-bottom: 10px;
 }
