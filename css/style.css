@@ -68,3 +68,23 @@ details summary {
 .index-link li {
   margin-bottom: 10px;
 }
+
+.part {
+  text-decoration: underline;
+}
+
+ol {
+  counter-reset: myCounter;
+}
+
+ol li {
+  list-style: none;
+  position: relative;
+}
+
+ol li:before {
+  counter-increment: myCounter;
+  content: counter(myCounter)")";
+  position: absolute;
+  left: -2ch;
+}
