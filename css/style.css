@@ -74,7 +74,7 @@ details summary {
 }
 
 ol {
-  counter-reset: myCounter;
+  counter-reset: li_counter;
 }
 
 ol li {
@@ -83,10 +83,18 @@ ol li {
 }
 
 ol li::before {
-  counter-increment: myCounter;
-  content: counter(myCounter)")";
+  counter-increment: li_counter;
+  content: counters(li_counter, ".")")";
   position: absolute;
   left: -2ch;
+}
+
+ol ol li::before {
+  left: -4ch;
+}
+
+ol ol ol li::before {
+  left: -6ch;
 }
 
 ol li.done::after {
