@@ -26,6 +26,31 @@
     <p>Используя API QGIS, написать программу, реализующую поиск и выделение всех объектов активного слоя, которые пересекаются между собой.</p>
     <p>Провести тестирование программы при различных сценариях.</p>
     <p>Написать комментарии к коду. Описать работу программы.</p>
+    
+    <p class="part">Решение</p>
+    <pre>
+layer = qgis.utils.iface.activeLayer()  # enter in active(select) layer
+features = layer.getFeatures()          # getting all features from layer
+selected = []
+for item in features:
+    features = layer.getFeatures()      # need for script work
+#    print(item.id())
+    for count in features:
+#        print("*")
+#        print(item.id())
+#        print(count.id())
+        if item.id() != count.id():
+            geom1 = item.geometry()     # need for check geometry 
+            geom2 = count.geometry()	# to work without errors and for check intersects
+#            print("*") check for intersects
+#            print(item.id())
+#            print(count.id())
+#            print(geom1.intersects(geom2))
+#            print("*")
+            if geom1.type() == QGis.Polygon and geom2.type() == QGis.Polygon and geom1.intersects(geom2):
+                selected.append(item.id())   # add intersected features
+layer.setSelectedFeatures(selected)          # select features
+    </pre>
   </details>
 
   <details>
