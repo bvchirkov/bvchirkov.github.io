@@ -82,6 +82,33 @@ layer.setSelectedFeatures(selected)          # select features
     </summary>
 
     <p>Используя API QGIS, написать программу, которая выделяет все помещения, соотношения сторон которых больше 1/3.</p>
+    <p class="part">Решение</p>
+    <pre>
+layer = qgis.utils.iface.activeLayer()  # enter in active(select) layer
+features = layer.getFeatures()          # getting all features from layer
+selected = []
+for item in features:
+    features = layer.getFeatures()      # need for script work
+    geom1 = item.geometry()             # need for check geometry
+    if geom1.type() == QGis.Polygon:
+        for count in features:
+            x = geom1.asPolygon()
+
+            length1 = (x[0][1][0] - x[0][4][0])**2 + (x[0][1][1] - x[0][4][1])**2   #side length between points 4 and 1
+            length2 = (x[0][2][0] - x[0][1][0])**2 + (x[0][2][1] - x[0][1][1])**2   #side length between points 1 and 2
+            length3 = (x[0][3][0] - x[0][2][0])**2 + (x[0][3][1] - x[0][2][1])**2   #side length between points 2 and 3
+            length4 = (x[0][4][0] - x[0][3][0])**2 + (x[0][4][1] - x[0][3][1])**2   #side length between points 3 and 4
+    
+            average1 = (length1 + length3) / 2  #average length of opposite sides
+            average2 = (length2 + length4) / 2
+    
+        if (average2**0.5 / average1**0.5 > 3): #aspect ratio check
+            print('&gt; 1 : 3')
+            selected.append(item.id())
+        else:
+            print('&lt; 1 : 3')
+layer.setSelectedFeatures(selected)             # select features
+    </pre>
   </details>
   
   <details>
