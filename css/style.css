@@ -103,4 +103,6 @@ ol li.done::after {
   left: -4ch;
 }
 
-
+.update {
+  font-style: italic;
+}
