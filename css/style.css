@@ -86,7 +86,7 @@ ol li::before {
   counter-increment: li_counter;
   content: counters(li_counter, ".")")";
   position: absolute;
-  left: -2ch;
+  left: -3ch;
 }
 
 ol ol li::before {
