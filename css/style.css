@@ -106,3 +106,8 @@ ol li.done::after {
 .update {
   font-style: italic;
 }
+
+.warning {
+  border-left: 3px solid black;
+  padding-left: 10px; /* Расстояние между линией и текстом */
+}
