@@ -109,5 +109,5 @@ ol li.done::after {
 
 .warning {
   border-left: 3px solid black;
-  padding-left: 10px; /* Расстояние между линией и текстом */
+  padding-left: 0px; /* Расстояние между линией и текстом */
 }
