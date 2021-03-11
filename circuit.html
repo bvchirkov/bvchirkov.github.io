@@ -13,12 +13,64 @@
     <img src="img/circuit-icon.jpg" width="64px" height="64px">
     <h1>Схемотехника ЭВМ</h1>
   </header>
+
+  <details open>
+    <summary>
+      <h3>Временные диаграммы</h3>
+    </summary>
+
+    <p>Инструменты:</p>
+    <ul>
+      <li>Online  - <a href="https://wavedrom.com">WaveDrom</a></li>
+      <li>Desktop - <a href="http://drawtiming.sourceforge.net/index.html">DRAWTIMING</a></li>
+    </ul>
+
+    <div>
+      <h4>Пример</h4>
+      <p>
+        Построить временную диаграмму работы схемы при заданной последовательности изменений сигналов Z,Y,X на входах.
+        Последовательность задается в виде номеров строк таблицы истинности.
+      </p>
+      <img src="img/TimingDiagram_Example1.png">
+      <p>Пример описания временной диаграммы для первых двух элементов последовательности. 
+        Блоки <strong>config, head и foot</strong> обязательные.</p>
+      <pre>
+{signal: [
+    ['Input',
+      {name: 'X', wave: 'x01'},
+      {name: 'Y', wave: 'x1.'},
+      {name: 'Z', wave: 'x0.'},
+    ],
+    ['Internal',
+      {name: 'D1', wave: '010'},
+      {name: 'D2', wave: '0.1'},
+      {name: 'D3', wave: '010'},
+      {name: 'D4', wave: '01.'},
+    ],
+    {name: 'F',  wave: '01.'},
+  ],
+  coheadnfig: { hscale: 2 },
+  head:{
+   text:'Вариант 1',
+   tock: 'начало 2 3 4 5 1',
+  },
+  foot:{
+    tock: 'ZYX 010 011 100 101 001',
+  },
+}
+      </pre>
+      <img src="img/wavedrom.png">
+      <p>Посмотреть и поредактировать пример можно <a href="https://wavedrom.com/editor.html?%7Bsignal%3A%20%5B%0A%20%20%5B%27Input%27%2C%0A%20%20%09%7Bname%3A%20%27X%27%2C%20wave%3A%20%27x01%27%7D%2C%0A%20%20%09%7Bname%3A%20%27Y%27%2C%20wave%3A%20%27x1.%27%7D%2C%0A%20%20%09%7Bname%3A%20%27Z%27%2C%20wave%3A%20%27x0.%27%7D%2C%0A%20%20%5D%2C%0A%20%20%5B%27Internal%27%2C%0A%20%20%09%7Bname%3A%20%27D1%27%2C%20wave%3A%20%27010%27%7D%2C%0A%20%20%09%7Bname%3A%20%27D2%27%2C%20wave%3A%20%270.1%27%7D%2C%0A%20%20%09%7Bname%3A%20%27D3%27%2C%20wave%3A%20%27010%27%7D%2C%0A%20%20%09%7Bname%3A%20%27D4%27%2C%20wave%3A%20%2701.%27%7D%2C%0A%20%20%5D%2C%0A%20%20%7Bname%3A%20%27F%27%2C%20%20wave%3A%20%2701.%27%7D%2C%0A%5D%2C%0A%20%20config%3A%20%7B%20hscale%3A%202%20%7D%2C%0A%20%20head%3A%7B%0A%20%20%20text%3A%27%D0%92%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%201%27%2C%0A%20%20%20tock%3A%20%27%D0%BD%D0%B0%D1%87%D0%B0%D0%BB%D0%BE%202%203%204%205%201%27%2C%0A%20%7D%2C%0A%20foot%3A%7B%0A%20%20%20tock%3A%20%27ZYX%20010%20011%20100%20101%20001%27%2C%0A%20%7D%2C%0A%7D">тут</a><p>
+    </div>
+
+    <p> Руководство по WaveDrom находится <a href="https://wavedrom.com/tutorial.html">тут</a></p>
+  </details>
   
-  <section>
+<!--  <section>
     <p>Лекции на сайте курса <a href="https://openedu.ru/course/eltech/DSD/">Цифровая схемотехника</a> (<a href="https://rintd.ru/nextcloud/s/Rsps6sXiieXgGAr">backup</a> [пароль у старосты])</p>
   </section>
   
-  <details>
+ <details>
     <summary>
       <h3>Вопросы на экзамен</h3>
     </summary>
@@ -116,7 +168,7 @@
     <p>Тест расположен <a href="https://forms.gle/NvdvXcCHtrV6E1p1A">здесь</a> (https://forms.gle/NvdvXcCHtrV6E1p1A)</p>
     <p>На многие вопросы требуется развернутый ответ, но количество символов, которые Вы можете использовать, ограничено. Постарайтесь доступно формулировать ответы.</p>
     <p>За некоторые одинаковые (между студентами) развернутые ответы будут вводиться коэффициенты: кто первый прислал весь тест, у того больше балл за этот ответ.</p>
-  </details>
+  </details> -->
 </body>
 
 </html>
