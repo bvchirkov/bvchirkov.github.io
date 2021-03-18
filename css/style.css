@@ -49,10 +49,11 @@ details summary {
 
 .sfooter {
   display: flex;
+  flex-direction: column;
 }
 
 .sfooter-item {
-  width: 50%;
+  width: 80%;
 }
 
 .sfooter-links {
