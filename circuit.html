@@ -188,6 +188,9 @@
     <p>
       Микросхема представляет собой оперативное запоминающее устройство <em>статического</em> типа на 64 бита (16 слов по 4 разряда) с произвольной выборкой. (SRAM)
     </p>
+    <p>
+      Данные в ОЗУ можно записыват и считыват. При считывании информации из ОЗУ она не разрушается. Ячейки в памяти организованы в матрицу RAM, имеющую 16 рядов и 4 колонки, что соответствует логической организации 16 слов по 4 бита каждое. Матриа снабжена адресом дешифратором DC, который принимает четрырехразрадный код адреса A1 - A4 и выбирает с помощью одного из сових 16 входов нужное четырехразрядное слово. Четыре буферных входа данных D1 - D4 снабжены входом разрешения записи <span style="text-decoration: overline;">РЗ</span> (<span style="text-decoration: overline;">WE</span>). <strong>Каждый выход данных Q1 - Q4 имеет открытый коллектор, что упрощает соединение нескольких ОУЗ РУ2 в более сложные матрицы. Данные на выходах инвертированны относительно тех, которые записаны в памяти. </strong>
+    </p>
 
     <div class="img-capture">
       <img src="img/K155PY2.png">
@@ -224,7 +227,7 @@
           <tr>
             <th class="tg-cly1" rowspan="2">Режим работы</th>
             <th class="tg-baqh" colspan="3">Вход</th>
-            <th class="tg-cly1" rowspan="2">Выход <span style="text-decoration: overline;">Q<span><sub>n</sub></th>
+            <th class="tg-cly1" rowspan="2">Выход <span style="text-decoration: overline;">Q</span><sub>n</sub></th>
           </tr>
           <tr>
             <td class="tg-0lax"><span style="text-decoration: overline;">РВ<span></td>
@@ -245,7 +248,7 @@
             <td class="tg-cly1">Н</td>
             <td class="tg-cly1">В</td>
             <td class="tg-cly1">х</td>
-            <td class="tg-cly1"><span style="text-decoration: overline;">Q<span><sub>n</sub></td>
+            <td class="tg-cly1"><span style="text-decoration: overline;">Q</span><sub>n</sub></td>
           </tr>
           <tr>
             <td class="tg-cly1">Запрет записи</td>
@@ -268,6 +271,14 @@
 
     <p class="warning" style="padding-bottom: 8px; padding-top: 8px;">
       В некоторых источниках входы РВ и РЗ обозначаются как CS (<em>crystal select</em>) и WE (<em>write enable</em>) соответственно.
+    </p>
+
+    <p>
+      Если выбран режим записи, то входы и выходы имеют комплиментарные коды. Для считывания данных из ОЗУ после фиксации адресных данных на вход <span style="text-decoration: overline;">РЗ</span> (<span style="text-decoration: overline;">WE</span>) подается напряжение высокого уровня, а на вход доступа к нужной микросхеме памяти <span style="text-decoration: overline;">РВ</span> (<span style="text-decoration: overline;">CS</span>) - низкого. Для записи сигналов требуется установить напряжение низкого уровня на входах управления <span style="text-decoration: overline;">РЗ</span> и <span style="text-decoration: overline;">РВ</span>. Адресный код в это время также должен быть зафиксирован.
+    </p>
+
+    <p>
+      Следует учесть, что в режиме считывания выбранные ячейки памяти доступны для приема данных, поэтмоу логические сигналы на шинах требуется зафиксироват перед переключением уровней управления от низкого к высокому на входах <span style="text-decoration: overline;">РЗ</span> и <span style="text-decoration: overline;">РВ</span>.
     </p>
 
     
