@@ -16,7 +16,7 @@
 
   <details>
     <summary>
-      <h3>Временные диаграммы</h3>
+      <h3>Лабораторная работа 0311 - Временные диаграммы</h3>
     </summary>
 
     <p>Инструменты:</p>
@@ -100,9 +100,9 @@
 
   </details>
 
-  <details open>
+  <details>
     <summary>
-      <h3>Лабораторная работа 0318 - ОЗУ (КМ155РУ2)</h3>
+      <h3>Лабораторная работа 0318 - Устройство ОЗУ на примере ИМС КМ155РУ2</h3>
     </summary>
 
     <p>
@@ -138,8 +138,6 @@
       Задания
       <ol>
         <li>построить схему КМ155РУ2 в SimulIDE, сохранить как новый компонент;</li>
-        <li>построить схему, использующую новый компонент;</li>
-        <li>потроить предложенную в п.2 схему на макетной плате.</li>
       </ol>
     </p>
 
@@ -169,25 +167,7 @@
       <a href="https://rintd.ru/nextcloud/s/BfcHrQERH8gnMqW">Папка для загрузки отчетов</a>
     </p>
 
-    <section class="sfooter">
-      <div class="sfooter-item">
-        <h4>Литература</h4>
-        <ul class="sfooter-links">
-          <li><a href="https://rintd.ru/nextcloud/s/ZcZkbDoPMTDqtSm">Титце У., Шенк К. <em>Полупроводниковая схемотехника</em></a></li>
-          <li><a href="https://rintd.ru/nextcloud/s/ayKcwMJkqSjgoHt">Постников А.И., Иванов В.И., Непомнящий О.В. <em>Схемотехника ЭВМ</em></a></li>
-          <li><a href="https://rintd.ru/nextcloud/s/WeaKqJdFXWAX5zE">Хоровиц П., Хилл У. <em>Искусство схемотехники</em></a></li>
-          <li><a href="https://rintd.ru/nextcloud/s/cgzaLKsy6GNN4Rw"> Шило В.Л. <em>Популярные цифровые микросхемы</em><a></li>
-          <li><a href="http://www.plam.ru/radioel/lekcii_po_shemotehnike/p7.php">Запоминающие устройства</a></li>
-        </ul>
-      </div>
-
-      <div class="sfooter-item">
-        <h4>Программы и сервисы</h4>
-        <ul class="sfooter-links">
-          <li><a href="https://rintd.ru/nextcloud/s/aTEx8kfemf9kKgj">SimulIDE</a></li>
-        </ul>
-      </div>
-
+    <section>
       <div class="sfooter-item">
         <h4>Ресурсы</h4>
         <ul class="sfooter-links">
@@ -196,6 +176,134 @@
       </div>
     </section>
   </details>
+
+    <details open>
+    <summary>
+      <h3>Лабораторная работа 0408 - Использование ИМС КМ155РУ2</h3>
+    </summary>
+
+    <p>
+      <h3>Общие сведения об ИМС КМ155РУ2</h3>
+    </p>
+    <p>
+      Микросхема представляет собой оперативное запоминающее устройство <em>статического</em> типа на 64 бита (16 слов по 4 разряда) с произвольной выборкой. (SRAM)
+    </p>
+
+    <div class="img-capture">
+      <img src="img/K155PY2.png">
+      <p>Рисунок 1 - Условное графическое обозначение (а) и цоколевка (б) К155РУ2</p>
+    </div>
+
+
+    <div style="display: flex; flex-direction: row;">
+      <div style="margin-right: 50px;">
+        <h4>Назначение выводов:</h4>
+        <p>
+          1 - вход первого адреса A1; <br>
+          2 - выход разрешения выборки РВ; <br>
+          3 - выход разрешения записи РЗ; <br>
+          4 - выход данных D1; <br>
+          5 - выход первого усилителя Q1;<br>
+          6 - выход данных D2;<br>
+          7 - выход второго усилителя Q2;<br>
+          8 - общий ("земля"); <br>
+          9 - выход третьего усилителя Q3; <br>
+          10 - выход данных D3; <br>
+          11 - выход четвертого усилителя Q4; <br>
+          12 - выход данных D4; <br>
+          13 - вход четвертого адреса A4; <br>
+          14 - вход третьего адреса A3; <br>
+          15 - вход второго адреса A2; <br>
+          16 - напряжение питания.
+        </p>
+      </div>
+      <div>
+        <h4>Таблица состояний К155РУ2</h4>
+        <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-cly1" rowspan="2">Режим работы</th>
+            <th class="tg-baqh" colspan="3">Вход</th>
+            <th class="tg-cly1" rowspan="2">Выход <span style="text-decoration: overline;">Q<span><sub>n</sub></th>
+          </tr>
+          <tr>
+            <td class="tg-0lax"><span style="text-decoration: overline;">РВ<span></td>
+            <td class="tg-0lax"><span style="text-decoration: overline;">РЗ<span><br></td>
+            <td class="tg-0lax">Dn</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-cly1">Запись</td>
+            <td class="tg-0lax">Н<br>Н</td>
+            <td class="tg-0lax">Н<br>Н</td>
+            <td class="tg-0lax">Н<br>В</td>
+            <td class="tg-0lax">В<br>Н</td>
+          </tr>
+          <tr>
+            <td class="tg-cly1">Считывание</td>
+            <td class="tg-cly1">Н</td>
+            <td class="tg-cly1">В</td>
+            <td class="tg-cly1">х</td>
+            <td class="tg-cly1"><span style="text-decoration: overline;">Q<span><sub>n</sub></td>
+          </tr>
+          <tr>
+            <td class="tg-cly1">Запрет записи</td>
+            <td class="tg-0lax">В<br>В</td>
+            <td class="tg-0lax">Н<br>Н</td>
+            <td class="tg-0lax">Н<br>В</td>
+            <td class="tg-0lax">В<br>В</td>
+          </tr>
+          <tr>
+            <td class="tg-cly1">Отключение<br>выходов</td>
+            <td class="tg-cly1">В</td>
+            <td class="tg-cly1">В</td>
+            <td class="tg-cly1">х</td>
+            <td class="tg-cly1">В</td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="warning" style="padding-bottom: 8px; padding-top: 8px;">
+      В некоторых источниках входы РВ и РЗ обозначаются как CS (<em>crystal select</em>) и WE (<em>write enable</em>) соответственно.
+    </p>
+
+    
+    <h3>Задания для самостоятельной работы</h3>
+    <ol>
+      <li>Сохранить в ОЗУ 4 бита информации (1 слово).</li>
+      <li>Сохранить в ОЗУ 16 бит (4 слова) информации. Продемонстрировать загрузку и выборку.</li>
+      <li>Сохранить в ОЗУ 2 числа, значения которых находятся в диапазоне от 0 до 255. Продемонстрировать механизмы формирования, загрузки и выборки чисел.</li>
+      <li>Сохранить в ОЗУ результат сложения двух чисел, которые могут принимать значения  в диапазоне от 0 до 255. Продемонстрировать механизмы формирования, загрузки и выборки чисел.</li>
+    </ol>
+
+    <p>
+      Визуализацию числел организовать в двоичном виде c помощью светодиодов.
+    </p>
+
+  </details>
+
+  <section class="sfooter">
+    <div class="sfooter-item">
+      <h4>Литература</h4>
+      <ul class="sfooter-links">
+        <li><a href="https://rintd.ru/nextcloud/s/ZcZkbDoPMTDqtSm">Титце У., Шенк К. <em>Полупроводниковая схемотехника</em></a></li>
+        <li><a href="https://rintd.ru/nextcloud/s/ayKcwMJkqSjgoHt">Постников А.И., Иванов В.И., Непомнящий О.В. <em>Схемотехника ЭВМ</em></a></li>
+        <li><a href="https://rintd.ru/nextcloud/s/WeaKqJdFXWAX5zE">Хоровиц П., Хилл У. <em>Искусство схемотехники</em></a></li>
+        <li><a href="https://rintd.ru/nextcloud/s/cgzaLKsy6GNN4Rw"> Шило В.Л. <em>Популярные цифровые микросхемы</em><a></li>
+        <li><a href="http://www.plam.ru/radioel/lekcii_po_shemotehnike/p7.php">Запоминающие устройства</a></li>
+      </ul>
+    </div>
+
+    <div class="sfooter-item">
+      <h4>Программы и сервисы</h4>
+      <ul class="sfooter-links">
+        <li><a href="https://rintd.ru/nextcloud/s/aTEx8kfemf9kKgj">SimulIDE</a></li>
+      </ul>
+    </div>
+  </section>
   
 <!--  <section>
     <p>Лекции на сайте курса <a href="https://openedu.ru/course/eltech/DSD/">Цифровая схемотехника</a> (<a href="https://rintd.ru/nextcloud/s/Rsps6sXiieXgGAr">backup</a> [пароль у старосты])</p>

@@ -117,8 +117,33 @@ ol li.done::after {
   padding-left: 0px; /* Расстояние между линией и текстом */
 }
 
-.img-note {
+.img-capture {
   text-align: center;
   margin-top: 0;
   padding-top: 0;
 }
+
+.tg  {
+  border-collapse:collapse;
+  border-spacing:0;
+}
+.tg td {
+  border-color:black;
+  border-style:solid;
+  border-width:1px;
+  overflow:hidden;
+  padding:10px 5px;
+  word-break:normal;
+}
+.tg th{
+  border-color:black;
+  border-style:solid;
+  border-width:1px;
+  font-weight:normal;
+  overflow:hidden;
+  padding:10px 5px;
+  word-break:normal;
+}
+.tg .tg-cly1{text-align:center;vertical-align:middle}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-0lax{text-align:center;vertical-align:top}
