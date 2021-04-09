@@ -14,9 +14,9 @@
     <h1>ГИС-технологии</h1>
   </header>
 
-  <article>
+  <!-- <article>
     <p>Написанные програмы высылать на почту преподавателю. В письме указать ФИО отправителя, группу и номер практической работы.</p>
-  </article>
+  </article> -->
 
   <details open>
     <summary>
@@ -48,6 +48,7 @@
 
     <article>
       <h4>Ход работы</h4>
+      <span class="part">Часть I. Подготовка исходных данных</span>
       <ol>
         <li>Создать новый проект проект (<span class="menuselection">Проект ► Создать</span>).</li>
         <li>Сохранить его в папке <code class="path">'/home/Student/Рабочий стол/workspace/&lt;Ваша папка&gt;/qgis_api_polygons/'</code>.</li>
@@ -55,12 +56,43 @@
           <ol>
             <li>задать имя файла <strong><u>buildings</u></strong></li>
             <li>в выпадающем меню <strong>'Тип геометрии'</strong> выбрать <strong>'Полигон'</strong></li>
-            <li>добвить новое поле: в блоке <strong>'New Field'</strong> в строку <strong>'Имя'</strong> вставить имя <strong><u>storeys</u></strong> (этажность) и нажать на кнопку <strong>'Add to Fields List'</strong></li>
+            <li>добвить новое поле: в блоке <strong>'New Field'</strong> в строку <strong>'Имя'</strong> вставить имя <strong><u>storeys</u></strong> (этажность), в выпадающем меню <strong>'Тип'</strong> выбрать <strong>'Целое число'</strong> и нажать на кнопку <strong>'Add to Fields List'</strong></li>
             <li>убедиться, что выбрана система координат <strong>WGS-84</strong></li>
           </ol>
         </li>
         <li>Перейти в режим редактирования. Для этого выбрать слой на панели слева и перейти в режим редактирования (<span class="menuselection">Слой ► Режим редактирования</span> или нажать на <img src="img/qgis_edit_layer.png" width="32px" style="position: relative;top: 10px"> на верхней панели инструментов)</li>
-        <li>Перейти в режим добавления полигонов <span class="menuselection">Правка ► Добавить Полигон</span>. Создать 5 полигонов (ПКМ для завершения ввода полигона). При завершении создания полигона будет появляться окно с полями <strong>id</strong> и <strong>storeys</strong>. Идентификаторы должны быть уникальным целым положительным числом. Этажность устанавливайте на свое усмотрение (целое положительное числов от 0 до 10).</li>
+        <li>Перейти в режим добавления полигонов <span class="menuselection">Правка ► Добавить Полигон</span>. Создать 10 полигонов (ПКМ для завершения ввода полигона). При завершении создания полигона будет появляться окно с полями <strong>id</strong> и <strong>storeys</strong>. Идентификаторы должны быть уникальным целым положительным числом. Этажность устанавливайте на свое усмотрение (целое положительное числов от 1 до 10).</li>
+      </ol>
+
+      <span class="part">Часть II. Обращения к API QGIS</span>
+      <ol>
+        <li>В консоли Python (<span class="menuselection">Модули ► Консоль Python</span>) открыть редактор. Панель разделится на 2 части. В левой части окно вывода результатов выполнения кода. В правой - редактор кода, который запустится с пустым файлом. Сохраните этот пустой файл рядом с проектом qgis.</li>
+        <div class="warning"><em>Примечание: весь последующий код создается в файле, созданном на предыдущем пункте</em></div>
+        <li>
+          Текущее интерактивное окружение QGIS находится в переменной <code>iface</code>, которая является экземпляром класса <strong><a href="https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.activeLayer">QgisInterface</a></strong> (обратитесь к документации по ссылке ознакомиться с методами и сигналами, которыми обладает данный класс). 
+          Для получения всех элементов слоя необходимо активировать слой (выбрать на панели слоев), а затем получить получить экземляр класса <strong><a href="https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#module-QgsVectorLayer">QgsVectorLayer</a></strong> с помощью метода <code>activeLayer()</code> переменной <code>iface</code>. <br>
+          Таким образом, код для получения активного слоя как объекта для дальнейшей работы выполняется следующей строкой: <code>layer = iface.activeLayer()</code>. В этом случае <code>layer</code> является объектом класса <strong>QgsVectorLayer</strong> и обладает присущими ему методами.
+        </li>
+        <li>
+          Имея активный слой как объект класса, запрос его объектов осуществляется с помощью метода <strong><a href="https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.getFeatures">getFeatures</a></strong> класса <strong>QgsVectorLayer</strong>: <code>features = layer.getFeatures()</code>. Переменная <code>features</code> является итератором (<strong><a href="https://qgis.org/pyqgis/master/core/QgsFeatureIterator.html#module-QgsFeatureIterator">QgsFeatureIterator</a></strong>), поэтому с ней удобнее работать через оператор цикла <code>for</code>: <br>
+          <code>
+            for feature in features:  <br>
+            &nbsp;&nbsp;#действия с feature <br>
+            &nbsp;&nbsp;pass
+          </code><br>
+          В этом цикле переменная <code>feature</code> является экземпляром класса <strong><a href="https://qgis.org/pyqgis/master/core/QgsFeature.html#module-QgsFeature">QgsFeature</a></strong>. Методы класса можно найти на странице документации. Для закрепления второго и третьего пунктов выполните код, который представлен в официальной документации в разделе <strong><a href="https://docs.qgis.org/3.16/en/docs/pyqgis_developer_cookbook/vector.html#id2">6.2. Iterating over Vector Layer</a></strong> (уберите оператор <code>break</code> в 41 строке, чтобы выполнялся обход всех элементов слоя).
+         </li>
+      </ol>
+
+      <span class="part">Часть III. Задания</span>
+      <ol>
+        <li>
+           Из кода, который обрабатывает каждый элемент слоя уберите код, который не относится к работе с полигонами и печати геометрических параметров. Приведите форматирование вывода информации об атрибутах каждого объекта слоя к следующему виду: <code>Номер здания: n, Этажность: n</code>.
+         </li>
+         <li>
+           Усовершенствуйте программу. Добавьте статистику: количество зданий каждой этажности.
+         </li>
+         <li>Самостоятельно изучите способ выделения объектов слоя разделу <strong><a href="https://docs.qgis.org/3.16/en/docs/pyqgis_developer_cookbook/vector.html#id3">6.3. Selecting features</a></strong> документации. Выделите красным цветом все здания этажностью больше 8 и зеленым цветом здания этажностью меньше 3.</li>
       </ol>
     </article>
   </details>
