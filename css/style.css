@@ -80,6 +80,7 @@ img {
 
 ol {
   counter-reset: li_counter;
+  line-height: 1.4em;
 }
 
 ol li {
@@ -147,3 +148,22 @@ ol li.done::after {
 .tg .tg-cly1{text-align:center;vertical-align:middle}
 .tg .tg-baqh{text-align:center;vertical-align:top}
 .tg .tg-0lax{text-align:center;vertical-align:top}
+
+.menuselection, .path{
+    /*background: #7fbbe3;*/
+    font-size: 85%;
+    border: 1px solid #000000;
+    font-weight: 900;
+    border-radius: 4px;
+    padding: 2.4px 6px;
+    margin: auto 2px;
+}
+
+/*code.path {
+  font-size: 85%;
+  border: 0.5px solid #000000;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 2.4px 6px;
+  margin: auto 2px;
+}*/
