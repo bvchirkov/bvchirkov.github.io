@@ -116,6 +116,8 @@ ol li.done::after {
 .warning {
   border-left: 3px solid black;
   padding-left: 0px; /* Расстояние между линией и текстом */
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .img-capture {
@@ -162,4 +164,5 @@ ol li.done::after {
 .part {
   text-decoration: underline;
   font-weight: bold;
+  margin-left: 15px;
 }
