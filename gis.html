@@ -14,10 +14,6 @@
     <h1>ГИС-технологии</h1>
   </header>
 
-  <!-- <article>
-    <p>Написанные програмы высылать на почту преподавателю. В письме указать ФИО отправителя, группу и номер практической работы.</p>
-  </article> -->
-
   <details open>
     <summary>
       <h3>Практическая работа 0412 - Слои и полигоны QGIS</h3>
@@ -33,7 +29,7 @@
     <article>
       <h4>Задачи:</h4>
       <ol>
-        <li>формирование умения работать с API QGIS;</li>
+        <li>формирование умения работать с API;</li>
         <li>развитие навыков работать с документацией;</li>
         <li>развитие навыков самостоятельной практической работы.</li>
       </ol>
@@ -119,6 +115,8 @@
         <em>
           Отчет по работе сдается в письменнов виде в формате pdf. 
           Для оформления отчета воспользуйтесь LibreOffice (относится к тем, кто работает на компьютерах Университета). Наименование файла отчета должно выглядеть следующим образом: <strong>Фамилия1_Фамилия2_lab0412.pdf</strong> (Фамилия2 вставляется, если работа выполнялась вдвоем)
+          <br>
+          Папка для загрузки отчетов: <a href="https://rintd.ru/nextcloud/s/Td6tARaTiwWCf9P">Lab_0412</a>
         </em>
       </div>
       <p>
@@ -130,12 +128,33 @@
         <li>Код, получившийся при выполнении самостоятельного задания (часть 3) и скриншоты результата выполнения.</li>
       </ol>
       <div class="warning">
-        Создание снимка области экрана в Ubuntu: Shift + Print Screen
+        Создание снимка области экрана в Ubuntu: <strong>Shift + Print Screen</strong>
       </div>
     </article>
   </details>
 
-  <details>
+  <section class="sfooter">
+    <div class="sfooter-item">
+      <h3>Дополнительные источники</h3>
+      <ul class="sfooter-links">
+        <li><a href="https://docs.python.org/3/tutorial/index.html">The Python Tutorial</a> </li>
+        <li><a href="https://docs.qgis.org/3.16/en/docs/pyqgis_developer_cookbook/intro.html">PyQGIS Developer Cookbook</a></li>
+        <li><a href="https://qgis.org/pyqgis/master/index.html">QGIS Python API documentation project</a></li>
+      </ul>
+    </div>
+    <div class="sfooter-item">
+      <h3>Программное обеспечение</h3>
+      <ul class="sfooter-links">
+        <li><a href="https://qgis.org/ru/site/forusers/download.html">QGIS 3.16</a></li>
+      </ul>
+    </div>
+  </section>
+</body>
+
+</html>
+
+
+<!-- <details>
     <summary>
       <h3>Практическая работа № 3. Пересечение обектов слоя</h3>
     </summary>
@@ -159,7 +178,7 @@ for item in features:
 #        print(count.id())
         if item.id() != count.id():
             geom1 = item.geometry()     # need for check geometry 
-            geom2 = count.geometry()	# to work without errors and for check intersects
+            geom2 = count.geometry()  # to work without errors and for check intersects
 #            print("*") check for intersects
 #            print(item.id())
 #            print(count.id())
@@ -244,23 +263,4 @@ layer.setSelectedFeatures(selected)             # select features
       <li>реализовать функцию "Добавить новый слой";</li>
       <li>реализовать функцию "Создать JSON".</li>
     </ul>
-  </details>  
-
-  <section class="sfooter">
-    <div class="sfooter-item">
-      <h3>Где почитать</h3>
-      <ul class="sfooter-links">
-        <li><a href="https://www.python.org">python</a> </li>
-        <li><a href="https://docs.qgis.org/2.18/en/docs/pyqgis_developer_cookbook/vector.html">Using Vector Layers</a></li>
-      </ul>
-    </div>
-    <div class="sfooter-item">
-      <h3>Где скачать</h3>
-      <ul class="sfooter-links">
-        <li><a href="https://qgis.org/downloads/">QGIS 2.18</a></li>
-      </ul>
-    </div>
-  </section>
-</body>
-
-</html>
+  </details>   -->
