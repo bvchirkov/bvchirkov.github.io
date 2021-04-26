@@ -44,7 +44,7 @@
 
     <article>
       <h4>Ход работы</h4>
-      <span class="part">Часть I. Подготовка исходных данных</span>
+      <span class="part workspace">Часть I. Подготовка исходных данных</span>
       <ol>
         <li>Создать новый проект проект (<span class="menuselection">Проект ► Создать</span>).</li>
         <li>Сохранить его в папке <code class="path">'/home/Student/Рабочий стол/workspace/&lt;Ваша папка&gt;/qgis_api_polygons/'</code>.</li>
@@ -60,7 +60,7 @@
         <li>Перейти в режим добавления полигонов <span class="menuselection">Правка ► Добавить Полигон</span>. Создать 10 полигонов (ПКМ для завершения ввода полигона). При завершении создания полигона будет появляться окно с полями <strong>id</strong> и <strong>storeys</strong>. Идентификаторы должны быть уникальным целым положительным числом. Этажность устанавливайте на свое усмотрение (целое положительное числов от 1 до 10).</li>
       </ol>
 
-      <span class="part">Часть II. Обращения к API QGIS</span>
+      <span class="part workspace">Часть II. Обращения к API QGIS</span>
       <ol>
         <li>В консоли Python (<span class="menuselection">Модули ► Консоль Python</span>) открыть редактор. Панель разделится на 2 части. В левой части окно вывода результатов выполнения кода. В правой - редактор кода, который запустится с пустым файлом. Сохраните этот пустой файл рядом с проектом qgis.</li>
         <div class="warning"><em>Примечание: весь последующий код создается в файле, созданном на предыдущем пункте</em></div>
@@ -91,7 +91,7 @@
         </ol>
       </ol>
 
-      <span class="part">Часть III. Задания</span>
+      <span class="part workspace">Часть III. Задания</span>
       <ol>
         <li>
           Самостоятельно изучите способ выделения объектов слоя по разделу <strong><a href="https://docs.qgis.org/3.16/en/docs/pyqgis_developer_cookbook/vector.html#id3">6.3. Selecting features</a></strong> документации. Выделите красным цветом все здания этажностью больше 8 и зеленым цветом здания этажностью меньше 3. Постройте программу выделения таким образом, чтобы была возможность выбрать соответсвующий фильтр.
@@ -133,7 +133,7 @@
     </article>
   </details>
 
-  <details open>
+  <details>
     <summary>
       <h3>Практическая работа 0419 - Взаимодействие между слоями QGIS</h3>
     </summary>
@@ -156,19 +156,19 @@
 
     <article>
       <h4>Ход работы</h4>
-      <span class="part">Часть I. Подготовка исходных данных</span>
+      <span class="part workspace">Часть I. Подготовка исходных данных</span>
       <ol>
         <li>Создать новый проект проект (<span class="menuselection">Проект ► Создать</span>).</li>
         <li>Сохранить его в папке <code class="path">'/home/Student/Рабочий стол/workspace/&lt;Ваша папка&gt;/qgis_api_toc/'</code>.</li>
         <li>Добавить в проект 4 векторых слоя: полигоны (buildings, regions), точки (spots), линии (roads). На каждом слое создать по 7-10 объектов (кроме слоя regions, на нем создайте 3 региона, которые будут включать в себя остальные объекты), так чтобы итоговаая картина была похожа на карту местности (линии - дороги, точки - места, полигоны_1 - здания, полигоны_2 - территория). Дла каждого слоя предусмотрите по 1 дополнительному атрибуту (атрибут с идентификатором в счет не идет).</li>
       </ol>
 
-      <span class="part">Часть II. Получение всех слоев</span>
+      <span class="part workspace">Часть II. Получение всех слоев</span>
       <ol>
         <li>Получить доступ ко всем слоям можно с помощью класса <strong><a href="https://docs.qgis.org/3.16/en/docs/pyqgis_developer_cookbook/legend.html#id1">QgsProject</a></strong>. <code>QgsProject.instance().mapLayers()</code> возвращает словарь слоев проекта, где ключем являет имя слоя и его <a href="https://ru.wikipedia.org/wiki/UUID">UUID</a>, а значением - объект слоя. Далее доступна работа с каждым слоем индивидуально (см. практическую работу 0412).</li>
       </ol>
 
-      <span class="part">Часть III. Задания</span>
+      <span class="part workspace">Часть III. Задания</span>
       <ol>
         <li>Самостоятельно изучите способ получения информации о пересечении объектов (<strong><a href="https://docs.qgis.org/3.16/en/docs/pyqgis_developer_cookbook/vector.html#using-spatial-index">QgsSpatialIndex</a></strong>). Вывести общую информацию по каждому региону: площадь, количество зданий, продолжительность дорог, количество отмеченных мест.</li>
         <li>Самостоятельно изучите способ создания атрибутов слоя (<strong><a href="https://docs.qgis.org/3.16/en/docs/pyqgis_developer_cookbook/vector.html#add-features">Add Features</a></strong>):</li>
@@ -214,6 +214,53 @@
       <div class="warning">
         Создание снимка области экрана в Ubuntu: <strong>Shift + Print Screen</strong>
       </div>
+    </article>
+  </details>
+
+  <details open>
+    <summary>
+      <h3>Практическая работа 0426 - Выражения QGIS</h3>
+    </summary>
+
+    <article>
+      <h4>Цель</h4>
+      <p>
+        Изучение механизма работы с выражениями для работы с объектами
+      </p>
+    </article>
+
+    <article>
+      <h4>Задачи:</h4>
+      <ol>
+        <li>формирование умения работать с API;</li>
+        <li>развитие навыков работать с документацией;</li>
+        <li>развитие навыков самостоятельной практической работы.</li>
+      </ol>
+    </article>
+
+    <article>
+      <h4>Ход работы</h4>
+      <span class="part workspace">Часть I. Подготовка исходных данных</span>
+      <ol>
+        <li>Откройте проект, созданный при выполнении лабораторной работы 0412 или 0419.</li>
+        <li>Добавьте к слою полигонов поля: <strong>uuid, area, name</strong> (в итоге, таблица атрибутов должна включать 4 столбца: <strong>id, uuid, area, name</strong>).</li>
+      </ol>
+
+      <span class="part workspace">Часть II. Работа с выражениями</span>
+      <ol>
+        <li>Открыть таблицу атрибутов <span class="menuselection">Слой ► Открыть таблицу атрибутов</span>.</li>
+        <li>Перейти в режим редактирования слоя.</li>
+        <li>Вызвать окно работы с выражениями можно нажатием на кнопку с символом <img src="img/mIconExpression.png" style="position: relative;top: 4px">. Список всех функций с описанием можно найти на странице <a href="https://docs.qgis.org/3.16/en/docs/user_manual/working_with_vector/functions_list.html#functions-list">List of functions</a>. Дополнительная информация по выражениям на странице <a href="https://docs.qgis.org/3.16/en/docs/user_manual/working_with_vector/expression.html?highlight=expression">Expressions</a>.</li>
+        <li>После того, как будет сформировано выражение в левой части диалогового окна работы с выражениями, нажмите кнопку <span class="menuselection">OK</span>. Выражение появится в строке окна таблицы атрибутов. Чтобы выполнить выражение нажмите кнопку <span class="menuselection">Обновить все</span>. Выражение выполнится для каждого элемента.</li>
+      </ol>
+
+      <span class="part workspace">Часть III. Задания</span>
+      <ol>
+        <li>Самостоятельно найдите информацию по функциям <code>uuid(), $area, concat()</code>.</li>
+        <li>Заполните поля uuid и area с помощью выражений.</li>
+        <li>Сформируйте выражение, которое задаст имя каждого элемента так, чтобы оно содержало слово Item, номер элемента и его площадь с одним знаком после запятой.</li>
+        <li class="level">Самостоятельно рассмотрите спопособ классификации объектов на странице <a href="https://docs.qgis.org/3.16/en/docs/user_manual/working_with_vector/vector_properties.html?highlight=classification#symbology-properties">Symbology Properties</a>. Поищите способ классификации объектов через Python.</li>
+      </ol>
     </article>
 
   </details>
