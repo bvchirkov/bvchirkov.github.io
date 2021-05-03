@@ -217,9 +217,9 @@
     </article>
   </details>
 
-  <details open>
+  <details>
     <summary>
-      <h3>Практическая работа 0426 - Выражения QGIS</h3>
+      <h3>Практическая работа 0426 - Выражения QGIS. Часть 1 - GUI</h3>
     </summary>
 
     <article>
@@ -262,7 +262,116 @@
         <li class="level">Самостоятельно рассмотрите спопособ классификации объектов на странице <a href="https://docs.qgis.org/3.16/en/docs/user_manual/working_with_vector/vector_properties.html?highlight=classification#symbology-properties">Symbology Properties</a>. Поищите способ классификации объектов через Python.</li>
       </ol>
     </article>
+  </details>
 
+  <details open>
+    <summary>
+      <h3>Практическая работа 0503 - Выражения QGIS. Часть 2 - API</h3>
+    </summary>
+
+    <article>
+      <h4>Цель</h4>
+      <p>
+        Изучение механизма работы с выражениями для работы с атрибутами объектов через API
+      </p>
+    </article>
+
+    <article>
+      <h4>Задачи:</h4>
+      <ol>
+        <li>формирование умения работать с API;</li>
+        <li>развитие навыков работать с документацией;</li>
+        <li>развитие навыков самостоятельной практической работы.</li>
+      </ol>
+    </article>
+
+    <article>
+      <h4>Ход работы</h4>
+      <span class="part workspace">Часть I. Подготовка исходных данных</span>
+      <ol>
+        <li>Создайте векторный слой с 10 полигонами, таким образом, чтобы их можно было группировать по количеству вершин.</li>
+      </ol>
+
+      <span class="part workspace">Часть II. Работа с выражениями</span>
+      <ol>
+        <li>Примеры работы с выражениями можно найти на странице <a href="https://docs.qgis.org/3.16/en/docs/pyqgis_developer_cookbook/expressions.html"><strong>Expressions, Filtering and Calculating Values</strong></a>.</li>
+        <li>За работу с выражениями через API отвечает класс <a href="https://qgis.org/pyqgis/master/core/QgsExpression.html"><strong>QgsExpression</strong></a>.</li>
+        <ol>
+          <li>Класс <strong>QgsExpression</strong> принимает выражение в виде строки (возможные вырежения см. в работе 0426). Например: <code>exp = QgsExpression('1 + 1 = 2')</code>.</li>
+          <li>Для применения выражения к объекту слоя необходимо создать окружение (контекст) - <a href="https://qgis.org/pyqgis/master/core/QgsExpressionContext.html"><strong>QgsExpressionContext</strong></a> и добавить нужные объекты в окружение с помощью функции <a href="https://qgis.org/pyqgis/master/core/QgsExpressionContext.html#qgis.core.QgsExpressionContext.setFeature"><code>setFeature()</code></a>.</li>
+          <li>Применение выражения к объекту выполняется функцией <a href="https://qgis.org/pyqgis/master/core/QgsExpression.html#qgis.core.QgsExpression.evaluate"><code>evaluate()</code></a>, которой в качестве параметра передается окружение.</li>
+          <li>После применения выражениея, необходимо обновить информацию на слое командой <a href="https://qgis.org/pyqgis/master/core/QgsVectorLayer.html?highlight=qgsvectorlayer#qgis.core.QgsVectorLayer.updateFeature"><code>updateFeature()</code></a>.</li>
+        </ol>
+      </ol>
+
+      <span class="workspace">Пример обновления поля <em>Area</em> всех объектов слоя:</span>
+
+      <pre class="hljs" style="display: block; line-height: 1.2em;">
+        exp_area = QgsExpression(<span class="hljs-string" style="font-weight: 700; color: green;">'$area'</span>)
+        context = QgsExpressionContext()
+        <span class="hljs-keyword" style="font-weight: 700; color: navy;">for</span> feat <span class="hljs-keyword" style="font-weight: 700; color: navy;">in</span> layer.getFeatures():
+          context.setFeature(feat)
+          feat[<span class="hljs-string" style="font-weight: 700; color: green;">'Area'</span>] = exp_area.evaluate(context)
+          layer.updateFeature(feat)
+      </pre>
+
+      <span class="part workspace">Часть III. Задания</span>
+      <ol>
+        <li>Добавить поля <code>Uuid, Area, Name</code> для слоя с помощью функции <code>fields_adder()</code>. При генерации uuid уберите фигурные скобки в начале и в конце. Пример использования класса <a href="https://qgis.org/pyqgis/3.16/core/QgsFields.html#qgis.core.QgsFields"></a><strong>QgsFields</strong> можно посмотреть в параграфе <a href="https://docs.qgis.org/3.16/en/docs/pyqgis_developer_cookbook/vector.html?highlight=qgsfields#directly-from-features">Directly from features</a>.</li>
+      
+
+      <pre class="hljs" style="display: block; overflow-x: auto; line-height: 1.2em;">
+      <span class="hljs-function"><span class="hljs-keyword" style="font-weight: 700; color: navy;">def</span> <span class="hljs-title" style="font-weight: 400; color: rgb(0, 0, 0);">fields_adder</span><span class="hljs-params">(layer:QgsVectorLayer, fields:QgsFields)</span>:</span>
+        <span class="hljs-keyword" style="font-weight: 700; color: navy;">for</span> idx <span class="hljs-keyword" style="font-weight: 700; color: navy;">in</span> layer.attributeList():
+          current_attribute = layer.attributeDisplayName(idx)
+          <span class="hljs-keyword" style="font-weight: 700; color: navy;">for</span> i, field <span class="hljs-keyword" style="font-weight: 700; color: navy;">in</span> enumerate(fields.toList()):
+            <span class="hljs-keyword" style="font-weight: 700; color: navy;">if</span> field.displayName() == current_attribute:
+              fields.remove(i)
+
+        <span class="hljs-keyword" style="font-weight: 700; color: navy;">if</span> <span class="hljs-keyword" style="font-weight: 700; color: navy;">not</span> fields.isEmpty():
+          pr = layer.dataProvider()
+          pr.addAttributes(fields)
+          layer.updateFields()
+      </pre>
+      
+        <li>Вносить изменения в атрибуты объектов слоя возможно только в режиме редактирования. Напишите код, который позволяет узнать, в каком режиме находится слой, перейдите в режим редактирования, внесите изменения, выйдите из режима редактирования. (Подсказка: смотрите функции класса <strong>QgsVectorLayer</strong>).</li>
+      </ol>
+    </article>
+
+    <article>
+      <h4>Вопросы для самопроверки:</h4>
+      <ol>
+        <li>Что возвращает функция <code>attributeList()</code> класса <code>QgsVectorLayer</code>?</li>
+        <li>Какая функция класса <code>QgsField</code> возвращает имя поля?</li>
+        <li>Для чего можно использовать выражения? В каких случаях можно задействовать этот механизм?</li>
+      </ol>
+    </article>
+
+    <article>
+      <h4>Отчет по работе</h4>
+      <div class="warning">
+        <em>
+          Отчет по работе сдается в письменнов виде в формате pdf. 
+          Для оформления отчета воспользуйтесь LibreOffice (относится к тем, кто работает на компьютерах Университета). Наименование файла отчета должно выглядеть следующим образом: <strong>Фамилия1_Фамилия2_lab0503.pdf</strong> (Фамилия2 вставляется, если работа выполнялась вдвоем)
+          <br>
+          Вместе с отчетом прикладывайте файл проекта и исходные коды на Python.
+          <br>
+          Все файлы упаковать в архив zip и загрузить в папку для отчетов.
+          <br>
+          Папка для загрузки отчетов: <a href="https://rintd.ru/nextcloud/s/fYN9WynmSfnxrCA">Lab_0503</a>
+        </em>
+      </div>
+      <p>
+        Отчет включает 3 раздела:
+      </p>
+      <ol>
+        <li>Ответы на вопросы для самопроверки.</li>
+        <li>Исходные коды, получившиеся при выполнении заданий и скриншоты результатов выполнения по каждому пункту.</li>
+      </ol>
+      <div class="warning">
+        Создание снимка области экрана в Ubuntu: <strong>Shift + Print Screen</strong>
+      </div>
+    </article>
   </details>
 
   <section class="sfooter">
